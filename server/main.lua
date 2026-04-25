@@ -43,14 +43,13 @@ AddEventHandler("playerConnecting", function(_, _, deferrals)
 	end)
 end)
 
--- Clear cache when they leave
 AddEventHandler("playerDropped", function(reason, resourceName, clientDropReason)
 	local src = source
 
 	if Config.LogDrops then
 		print(
 			string.format(
-				"[obsidian_chat] %s dropped | Reason: %s | Resource: %s | Client: %s",
+				"%s dropped | Reason: %s | Resource: %s | Client: %s",
 				GetPlayerName(src),
 				reason,
 				resourceName,
@@ -70,7 +69,7 @@ AddEventHandler("playerDropped", function(reason, resourceName, clientDropReason
 		)
 	end
 
-	roleCache[src] = nil
+	roleCache[src] = nil -- clear cache
 end)
 
 -- ======================
@@ -275,7 +274,7 @@ end, false)
 
 if Config.AllowDMs then
 	-- ======================
-	--  DW command
+	--  DM commands
 	-- ======================
 	RegisterCommand("dm", function(source, args, _)
 		if #args < 2 then
