@@ -68,7 +68,7 @@ AddEventHandler("playerDropped", function(reason, resourceName, clientDropReason
 
 	if Config.LeaveMessages then
 		TriggerClientEvent(
-			"obsidian_chat:addMessage",
+			"modern_chat:addMessage",
 			-1,
 			"system",
 			"System",
@@ -85,14 +85,7 @@ end)
 -- ======================
 if Config.JoinMessages then
 	AddEventHandler("playerJoining", function()
-		TriggerClientEvent(
-			"obsidian_chat:addMessage",
-			-1,
-			"system",
-			"System",
-			"Sys",
-			GetPlayerName(source) .. " joined."
-		)
+		TriggerClientEvent("modern_chat:addMessage", -1, "system", "System", "Sys", GetPlayerName(source) .. " joined.")
 	end)
 end
 
@@ -113,11 +106,11 @@ AddEventHandler("chatMessage", function(source, _, message)
 		getCachedRole(src, function(role)
 			local displayName = role and (role .. " | " .. playerName) or playerName
 			LogToDiscord(string.format("**[Global]** `%s`: %s", playerName, message))
-			TriggerClientEvent("obsidian_chat:addMessage", -1, "global", displayName, "Global", message)
+			TriggerClientEvent("modern_chat:addMessage", -1, "global", displayName, "Global", message)
 		end)
 	else
 		LogToDiscord(string.format("**[Global]** `%s`: %s", playerName, message))
-		TriggerClientEvent("obsidian_chat:addMessage", -1, "global", playerName, "Global", message)
+		TriggerClientEvent("modern_chat:addMessage", -1, "global", playerName, "Global", message)
 	end
 end)
 
@@ -132,7 +125,7 @@ RegisterCommand("ooc", function(source, args, _)
 	local playerName = GetPlayerName(source)
 
 	LogToDiscord(string.format("**[OOC]** `%s`: %s", playerName, message))
-	TriggerClientEvent("obsidian_chat:addMessage", -1, "ooc", playerName, "OOC", message)
+	TriggerClientEvent("modern_chat:addMessage", -1, "ooc", playerName, "OOC", message)
 end, false)
 
 -- ======================
@@ -151,7 +144,7 @@ RegisterCommand("looc", function(source, args, _)
 	LogToDiscord(string.format("**[LOOC]** `%s`: %s", playerName, message))
 
 	TriggerClientEvent(
-		"obsidian_chat:addProximityMessage",
+		"modern_chat:addProximityMessage",
 		-1,
 		"looc",
 		playerName,
@@ -179,7 +172,7 @@ RegisterCommand("me", function(source, args, _)
 
 	LogToDiscord(string.format("**[ME]** `%s`: %s", playerName, message))
 	TriggerClientEvent(
-		"obsidian_chat:addProximityMessage",
+		"modern_chat:addProximityMessage",
 		-1,
 		"me",
 		playerName,
@@ -204,7 +197,7 @@ RegisterCommand("gme", function(source, args, _)
 	local playerName = GetPlayerName(source)
 
 	LogToDiscord(string.format("**[GME]** `%s`: %s", playerName, message))
-	TriggerClientEvent("obsidian_chat:addMessage", -1, "gme", playerName, "gME", message)
+	TriggerClientEvent("modern_chat:addMessage", -1, "gme", playerName, "gME", message)
 end, false)
 
 -- ======================
@@ -222,7 +215,7 @@ RegisterCommand("do", function(source, args, _)
 
 	LogToDiscord(string.format("**[DO]** `%s`: %s", playerName, message))
 	TriggerClientEvent(
-		"obsidian_chat:addProximityMessage",
+		"modern_chat:addProximityMessage",
 		-1,
 		"do",
 		playerName,
@@ -247,7 +240,7 @@ RegisterCommand("ad", function(source, args, _)
 	local playerName = GetPlayerName(source)
 
 	LogToDiscord(string.format("**[AD]** `%s`: %s", playerName, message))
-	TriggerClientEvent("obsidian_chat:addMessage", -1, "ad", playerName, "AD", message)
+	TriggerClientEvent("modern_chat:addMessage", -1, "ad", playerName, "AD", message)
 end, false)
 
 -- ======================
@@ -262,7 +255,7 @@ RegisterCommand("li", function(source, args, _)
 	local playerName = GetPlayerName(source)
 
 	LogToDiscord(string.format("**[LI]** `%s`: %s", playerName, message))
-	TriggerClientEvent("obsidian_chat:addMessage", -1, "li", playerName, "li", message)
+	TriggerClientEvent("modern_chat:addMessage", -1, "li", playerName, "li", message)
 end, false)
 
 -- ======================
@@ -277,7 +270,7 @@ RegisterCommand("dw", function(source, args, _)
 	local playerName = GetPlayerName(source)
 
 	LogToDiscord(string.format("**[DW]** `%s`: %s", playerName, message))
-	TriggerClientEvent("obsidian_chat:addMessage", -1, "dw", "Anonymous", "Dark Web", message)
+	TriggerClientEvent("modern_chat:addMessage", -1, "dw", "Anonymous", "Dark Web", message)
 end, false)
 
 if Config.AllowDMs then
@@ -293,12 +286,12 @@ if Config.AllowDMs then
 		local message = table.concat(args, " ", 2)
 
 		if not targetId or targetId == 0 then
-			TriggerClientEvent("obsidian_chat:addMessage", source, "system", "System", "sys", "Invalid ID.")
+			TriggerClientEvent("modern_chat:addMessage", source, "system", "System", "sys", "Invalid ID.")
 
 			return
 		elseif targetId == source then
 			TriggerClientEvent(
-				"obsidian_chat:addMessage",
+				"modern_chat:addMessage",
 				source,
 				"system",
 				"System",
@@ -311,7 +304,7 @@ if Config.AllowDMs then
 
 		if not targetId or not GetPlayerName(targetId) then
 			TriggerClientEvent(
-				"obsidian_chat:addMessage",
+				"modern_chat:addMessage",
 				source,
 				"system",
 				"System",
@@ -328,7 +321,7 @@ if Config.AllowDMs then
 		lastDmSource[source] = targetId
 
 		TriggerClientEvent(
-			"obsidian_chat:addMessage",
+			"modern_chat:addMessage",
 			source,
 			"dm",
 			"to " .. targetName .. " (" .. targetId .. ")",
@@ -336,7 +329,7 @@ if Config.AllowDMs then
 			message
 		)
 		TriggerClientEvent(
-			"obsidian_chat:addMessage",
+			"modern_chat:addMessage",
 			targetId,
 			"dm",
 			"from " .. senderName .. " (" .. source .. ")",
@@ -356,13 +349,13 @@ if Config.AllowDMs then
 		end
 
 		if not targetId then
-			TriggerClientEvent("obsidian_chat:addMessage", source, "system", "System", "sys", "No one to reply to.")
+			TriggerClientEvent("modern_chat:addMessage", source, "system", "System", "sys", "No one to reply to.")
 			return
 		end
 
 		if not GetPlayerName(targetId) then
 			TriggerClientEvent(
-				"obsidian_chat:addMessage",
+				"modern_chat:addMessage",
 				source,
 				"system",
 				"",
@@ -382,7 +375,7 @@ if Config.AllowDMs then
 		lastDmSource[source] = targetId
 
 		TriggerClientEvent(
-			"obsidian_chat:addMessage",
+			"modern_chat:addMessage",
 			source,
 			"dm",
 			"to " .. targetName .. " (" .. targetId .. ")",
@@ -390,7 +383,7 @@ if Config.AllowDMs then
 			message
 		)
 		TriggerClientEvent(
-			"obsidian_chat:addMessage",
+			"modern_chat:addMessage",
 			targetId,
 			"dm",
 			"from " .. senderName .. " (" .. source .. ")",

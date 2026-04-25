@@ -57,19 +57,19 @@ Citizen.CreateThread(function()
 end)
 
 -- event handlers
-RegisterNetEvent("obsidian_chat:addMessage")
-AddEventHandler("obsidian_chat:addMessage", function(type, name, tag, message)
+RegisterNetEvent("modern_chat:addMessage")
+AddEventHandler("modern_chat:addMessage", function(type, name, tag, message)
 	local timestamp = GetTimestamp()
-	TriggerEvent("chat:addMessage", { templateId = "obsidian", args = { type, timestamp, name, tag, message } })
+	TriggerEvent("chat:addMessage", { templateId = "modern", args = { type, timestamp, name, tag, message } })
 end)
 
-RegisterNetEvent("obsidian_chat:addProximityMessage")
-AddEventHandler("obsidian_chat:addProximityMessage", function(type, name, tag, message, authorServerId, ax, ay, az)
+RegisterNetEvent("modern_chat:addProximityMessage")
+AddEventHandler("modern_chat:addProximityMessage", function(type, name, tag, message, authorServerId, ax, ay, az)
 	local authorCoords = vector3(ax, ay, az)
 	local myCoords = GetEntityCoords(PlayerPedId())
 
 	if GetPlayerServerId(PlayerId()) == authorServerId or #(myCoords - authorCoords) < Config.ProximityRange then
 		local timestamp = GetTimestamp()
-		TriggerEvent("chat:addMessage", { templateId = "obsidian", args = { type, timestamp, name, tag, message } })
+		TriggerEvent("chat:addMessage", { templateId = "modern", args = { type, timestamp, name, tag, message } })
 	end
 end)

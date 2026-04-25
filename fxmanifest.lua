@@ -12,10 +12,10 @@ server_script("server/*.lua")
 shared_script("config.lua")
 file("style.css")
 
-chat_theme("obsidian")({
+chat_theme("modern")({
 	styleSheet = "style.css",
 	msgTemplates = {
 		-- Args: message_type, message_timestamp, message_author, message_tag (LOOC, OOC, etc.), message_body
-		obsidian = '<div id="message" class="{0}"><div class="accent"></div><div class="bg-accent"></div><div class="content"><div class="content__info"><span class="timestamp">{1}</span><span class="name">{2}</span><span class="tag">{3}</span></div><div class="content__body">{4}</div></div></div',
+		modern = '<div id="message" class="{0}"><div class="accent"></div><div class="bg-accent"></div><div class="content"><div class="content__info"><span class="timestamp">{1}</span><span class="name">{2}</span><span class="tag">{3}</span></div><div class="content__body">{4}</div></div></div',
 	},
 })
