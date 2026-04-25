@@ -33,6 +33,7 @@ Config = {}
 -- Basic Configuration
 Config.AllowDMs = true -- allow users to DM each other (/dm, /r)
 Config.ProximityRange = 20.0 -- the range that proximity messages will be received
+Config.ESX = false -- set to true if using esx (this will disable ESX's RP chat)
 
 -- Discord Integration
 Config.DiscordRolesEnabled = true -- prefix messages with the sender's highest Discord role
@@ -44,6 +45,6 @@ Config.DiscordLogs = true -- log chat messages/commands to a Discord channel
 Config.DiscordWebhookURL = ""
 
 -- Server event messages
-Config.JoinMessages = false -- announce when a player joins
-Config.LeaveMessages = false -- announce when a player leaves
+Config.JoinMessages = true -- announce when a player joins
+Config.LeaveMessages = true -- announce when a player leaves
 Config.LogDrops = true -- print drop reason to server console (useful for crash debugging)

@@ -34,6 +34,13 @@ local function getCachedRole(source, cb)
 	end
 end
 
+-- Stop ESX chat if we are using ESX
+AddEventHandler("onResourceStart", function(resource)
+	if resource == "esx_rpchat" and Config.ESX then
+		StopResource(resource)
+	end
+end)
+
 -- Warm the cache as early as possible when a player connects
 AddEventHandler("playerConnecting", function(_, _, deferrals)
 	deferrals.defer()
@@ -43,6 +50,7 @@ AddEventHandler("playerConnecting", function(_, _, deferrals)
 	end)
 end)
 
+-- player leaves
 AddEventHandler("playerDropped", function(reason, resourceName, clientDropReason)
 	local src = source
 
