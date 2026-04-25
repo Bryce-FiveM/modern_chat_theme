@@ -38,9 +38,14 @@ function LogToDiscord(content)
 		return
 	end
 
+	if not Config.DiscordWebhookURL then
+		print("You've enabled Discord logs but have not provided a Webhook URL. Please check your config.")
+		return
+	end
+
 	PerformHttpRequest(Config.DiscordWebhookURL, function(status, _, _)
 		if status ~= 204 then
-			print("[obsidian_chat] Webhook failed with status: " .. tostring(status))
+			print("Webhook failed with status: " .. tostring(status))
 		end
 	end, "POST", json.encode({ content = content }), { ["Content-Type"] = "application/json" })
 end
