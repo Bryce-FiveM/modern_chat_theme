@@ -1,4 +1,4 @@
-![An image showing three example chat messages.](./demo.png)
+![A video showing example chat messages.](./demo.mp4)
 
 # 💬 Modern Chat Theme
 
