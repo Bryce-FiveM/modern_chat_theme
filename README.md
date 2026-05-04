@@ -1,4 +1,4 @@
-![A video showing example chat messages.](https://github.com/user-attachments/assets/aeffdc78-59a0-4131-b49a-73f383b76075)
+![A photo showing chat examples](https://github.com/Bryce-FiveM/modern_chat_theme/blob/main/demo.png)
 
 # 💬 Modern Chat Theme
 
